@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function changeStyleDiv(){
+            if(document.querySelector('#B, #D').style.fontWeight==="bold") {
+                document.querySelector('#B, #D').style.fontWeight = "normal"
+                // document.getElementsByClassName('alert')[0].textContent = "";
+                document.getElementsByClassName('alert')[0].innerHTML = "<input type='hidden' name='button' value='false'/>";
+
+            }
+            else if(document.querySelector('#B, #D').style.fontWeight==="normal"){
+                document.querySelector('#B, #D').style.fontWeight = "bold"
+                document.getElementsByClassName('alert')[0].innerHTML = "<input type='hidden' name='button' value='true'/>";
+
+            }
+            else {
+                document.querySelector('#B, #D').style.fontWeight = "bold"
+                document.getElementsByClassName('alert')[0].innerHTML = "<input type='hidden' name='button' value='true'/>";
+
+            }
+
+        }
+    </script>
+</head>
+<body style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(183,75,210,1) 100%, rgba(252,70,107,1) 100%);">
+<div th:each="el : ${update}">
+    <h th:text="${'Name: ' + update.get().getNotes_name()}"/> <p th:text="${'Description: ' + update.get().getDescription()}"/> <p th:text="${'Date and time ready: ' + update.get().getTimeAndDate() + ' ' + update.get().getTime()}"/>  <hr>
+    <form action="/updateNote" method="POST">
+        <input type="hidden" th:value="${update.get().getId()}" name="id">
+        <p> <input id="B" type="text"  name="nameNote" placeholder="Name"> <input style="font-weight: bold;" value="B" type="button" onclick="changeStyleDiv()"> </p>
+        <p><input type="text" style="height: 75px" name="description" placeholder="Description"></p>
+        <p><input type="date"  name="date" placeholder="Date ready"></p>
+        <p><input type="time"  name="time" placeholder="Time"></p>
+        <p class="alert"> <input type='hidden' name='button' value='false'></p>
+        <button type="submit" style="border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">Update</button>
+    </form>
+    <form action="/info" method="POST" style="padding-top: 10px">
+        <input type="hidden" th:value="${update.get().getId()}" name="info">
+        <button type="submit" style="border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">Cancel</button>
+    </form>
+</div>
+
+<div th:each="el : ${updateBold}">
+    Name: <b th:text="${updateBold.get().getNotes_name()}"/> <p th:text="${'Description: ' + updateBold.get().getDescription()}"/> <p th:text="${'Date and time ready: ' + updateBold.get().getTimeAndDate() + ' ' + updateBold.get().getTime()}"/>  <hr>
+    <form action="/updateNote" method="POST">
+        <input type="hidden" th:value="${updateBold.get().getId()}" name="id">
+        <p> <input id="D" type="text"  name="nameNote" placeholder="Name"> <input style="font-weight: bold;" value="B" type="button" onclick="changeStyleDiv()"> </p>
+        <p><input type="text" style="height: 75px" name="description" placeholder="Description"></p>
+        <p><input type="date"  name="date" placeholder="Date ready"></p>
+        <p><input type="time"  name="time" placeholder="Time"></p>
+        <p class="alert"> <input type='hidden' name='button' value='false'></p>
+        <button type="submit" style="border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">Update</button>
+    </form>
+    <form action="/info" method="POST" style="padding-top: 10px">
+        <input type="hidden" th:value="${updateBold.get().getId()}" name="info">
+        <button type="submit" style="border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">Cancel</button>
+    </form>
+</div>
+</body>
+</html>

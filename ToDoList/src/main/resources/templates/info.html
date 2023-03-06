@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:Описание="http://www.w3.org/1999/xhtml"
+      xmlns:выполнения="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(183,75,210,1) 100%, rgba(252,70,107,1) 100%);">
+
+<div th:each="el : ${noteInfo}">
+    <form action="/delete" method="POST" style="position: absolute; padding-left: 1200px" >
+        <input type="hidden" th:value="${noteInfo.get().getId()}" name="idNote">
+        <input type="hidden" th:value="${noteInfo.get().getNotes_name()}" name="nameNote">
+        <input type="hidden" th:value="${noteInfo.get().getDescription()}" name="descriptionNote">
+        <input type="hidden" th:value="${noteInfo.get().getTimeAndDate()}" name="dateNote">
+        <input type="hidden" th:value="${noteInfo.get().getCreateDate()}" name="createDate">
+        <input type="hidden" th:value="${noteInfo.get().getTime()}" name="time">
+        <input type="hidden" th:value="${noteInfo.get().getaBoolean()}" name="button">
+        <button type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">delete</button>
+    </form>
+
+    <form action="/updateNote" method="GET" style="padding-left: 1100px; position: absolute;">
+        <input type="hidden" th:value="${noteInfo.get().getId()}" name="updateNote">
+        <button type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">UpdateNote</button>
+    </form>
+    <a href="/auth/home" style="position: absolute; padding-left: 1050px">Home</a>
+    Name: <h th:text="${noteInfo.get().getNotes_name()}"/> <p th:text="${'Description: ' + noteInfo.get().getDescription()}"/> <p th:text="${'Ready date and time: ' + noteInfo.get().getTimeAndDate() + ' ' + noteInfo.get().getTime()}"/> <p th:text="${'Date create: ' + noteInfo.get().getCreateDate()}"/>  <hr>
+    <div th:each="el1 : ${comments}">
+        <p th:text="${'Comment: ' + el1.getComment()}"/>
+    </div>
+
+    <form action="/comment" method="POST">
+        <input type="text"  name="comment" placeholder="Комментарий">
+        <input type="hidden" th:value="${noteInfo.get().getId()}" name="noteId">
+        <button type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">Add comment</button>
+    </form>
+</div>
+
+<div th:each="el : ${noteInfoBold}">
+    <form action="/delete" method="POST" style="position: absolute; padding-left: 1200px" >
+        <input type="hidden" th:value="${noteInfoBold.get().getId()}" name="idNote">
+        <input type="hidden" th:value="${noteInfoBold.get().getNotes_name()}" name="nameNote">
+        <input type="hidden" th:value="${noteInfoBold.get().getDescription()}" name="descriptionNote">
+        <input type="hidden" th:value="${noteInfoBold.get().getTimeAndDate()}" name="dateNote">
+        <input type="hidden" th:value="${noteInfoBold.get().getCreateDate()}" name="createDate">
+        <input type="hidden" th:value="${noteInfoBold.get().getTime()}" name="time">
+        <input type="hidden" th:value="${noteInfoBold.get().getaBoolean()}" name="button">
+        <button type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">delete</button>
+    </form>
+
+    <form action="/updateNote" method="GET" style="padding-left: 1100px; position: absolute;">
+        <input type="hidden" th:value="${noteInfoBold.get().getId()}" name="updateNote">
+        <button type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">UpdateNote</button>
+    </form>
+    <a href="/auth/home" style="position: absolute; padding-left: 1050px">Home</a>
+    Name: <b th:text="${noteInfoBold.get().getNotes_name()}"/> <p th:text="${'Description: ' + noteInfoBold.get().getDescription()}"/> <p th:text="${'Ready date and time: ' + noteInfoBold.get().getTimeAndDate() + ' ' + noteInfoBold.get().getTime()}"/> <p th:text="${'Date create: ' + noteInfoBold.get().getCreateDate()}"/>  <hr>
+    <div th:each="el1 : ${comments}">
+        <p th:text="${'Comment: ' + el1.getComment()}"/>
+    </div>
+
+    <form action="/comment" method="POST">
+        <input type="text"  name="comment" placeholder="Комментарий">
+        <input type="hidden" th:value="${noteInfoBold.get().getId()}" name="noteId">
+        <button type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;">Add comment</button>
+    </form>
+</div>
+</body>
+</html>

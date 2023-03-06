@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function changeStyleDiv(){
+            if(document.querySelector('#B').style.fontWeight==="bold") {
+                document.querySelector('#B').style.fontWeight = "normal"
+                // document.getElementsByClassName('alert')[0].textContent = "";
+                document.getElementsByClassName('alert')[0].innerHTML = "<input type='hidden' name='button' value='false'/>";
+
+            }
+            else if(document.querySelector('#B').style.fontWeight==="normal"){
+                document.querySelector('#B').style.fontWeight = "bold"
+                document.getElementsByClassName('alert')[0].innerHTML = "<input type='hidden' name='button' value='true'/>";
+
+            }
+            else {
+                document.querySelector('#B').style.fontWeight = "bold"
+                document.getElementsByClassName('alert')[0].innerHTML = "<input type='hidden' name='button' value='true'/>";
+
+            }
+
+        }
+    </script>
+</head>
+<body style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(183,75,210,1) 100%, rgba(252,70,107,1) 100%);">
+<form class="form-box" action="/newNote" th:method="POST">
+    <p>Name: </p>
+    <p><input id="B" type="text" name="header" placeholder="Name"> <input style="font-weight: bold;" value="B" type="button" onclick="changeStyleDiv()"></p>
+    <p>Description: </p>
+    <p> <input type="text" style="height: 75px" name="description" placeholder="Description"></p>
+    <p>Ready date: </p>
+    <p> <input type="date" name="dateReady" placeholder="Date ready"></p>
+    <p>Time: </p>
+    <p> <input type="time" name="time" placeholder="Time"></p>
+    <p class="alert"> <input type='hidden' name='button' value='false'></p>
+
+    <p><input type="submit" style=" border-top-left-radius: 500px; border-bottom-left-radius: 500px; border-top-right-radius: 500px;" value="Add new note"> <a href="/auth/home" style="padding: 10px">Cancel</a></p>
+</form>
+</body>
+</html>
