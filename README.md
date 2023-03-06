@@ -9,6 +9,7 @@
 - Hibernate ORM (СУБД PostgreSQL)
 - Thymeleaf, CSS
 - Apache Maven
+- 
 Все пояснения к проекту, а именно:
 
 - Функциональная спецификация
